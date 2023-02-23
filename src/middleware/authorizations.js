@@ -1,11 +1,43 @@
 //const { response } = require("express");
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
-const fast2sms = require('fast-two-sms')
-// const client = require('twilio')('accountSid', 'authToken', {
-//   autoRetry: true,
-//   maxRetries: 3
-// });
+const fast2sms = require("fast-two-sms");
+const nodemailer = require("nodemailer");
+
+const sendMail = async (req,res) =>{
+  try{
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'prince11march1998@gmail.com', // generated ethereal user
+        pass: 'evsmavnjsqoefsdl', // generated ethereal password
+      },
+    });
+
+    var mailOptions = {
+      from: "prince11march1998@gmail.com",
+      to: "devanshu@takniik.com",
+      subject: "Testing",
+      Text: "First Email send from nodejs nodemailer",
+      html:
+        `<p>You requested for reset password, kindly use this token `,
+    };
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) {
+        console.log(err);
+        return false
+      } else {
+        console.log("Email sent successfully")
+        res.send(transporter)
+      }
+    });
+
+  }catch(err){
+    console.log(err);
+  }
+}
 
 const createJWT = async (user) => {
   try {
@@ -61,15 +93,33 @@ const generateOtp = async (req, res) => {
   // const number = req.body.mobile;
   // const otp = { number: number, otp: OTP };
   // console.log("otp", otp);
-  var options = {authorization:"x3fE1DbYn4X0GqIoilwWOsVFrycNgHP9Ku2SATzMeQCamZ8h76GOons46c2tfr7aUNPkS9xyEwBHzYjJ",message : 'YOUR otp is 5543', numbers : ['9693161773']} 
-  const response = await fast2sms.sendMessage(options)
-  console.log("response",response)
-
+  // var options = {authorization:'x3fE1DbYn4X0GqIoilwWOsVFrycNgHP9Ku2SATzMeQCamZ8h76GOons46c2tfr7aUNPkS9xyEwBHzYjJ',message : 'YOUR otp is 5543', numbers : [req.body.mobile]}
+  // console.log("data",options);
+  const response = await fast2sms.sendMessage({
+    authorization:
+      "x3fE1DbYn4X0GqIoilwWOsVFrycNgHP9Ku2SATzMeQCamZ8h76GOons46c2tfr7aUNPkS9xyEwBHzYjJ",
+    message: "your otp is 44444",
+    numbers: ["8434443026"],
+  });
+  console.log("response", response);
+  res.send({ data: response });
   //const result =await otp.save();
- // res.send({ msg: "send otp succesfully", number: otp });
+  // res.send({ msg: "send otp succesfully", number: otp });
 };
 
+const usefast2sms =async(req,res) =>{
+  try{
+  const response = await fast2sms.sendMessage({
+    authorization:
+      "mySFvt7CuNbagNGCoUotkB1nrBDUfpvXka1fQvGsRKGmgVVS4ike07dKJ69a",
+    message: "your otp is 44444",
+    numbers: ['8434443026'],
+  });
+  console.log("data",response);
+}catch(err){
+  console.log(err);
+}
+}
 
 
-
-module.exports = { createJWT, verify, generateOtp };
+module.exports = { createJWT, verify, generateOtp,usefast2sms,sendMail };
