@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 
 const sendMail = async (req,res) =>{
   try{
+
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -18,11 +19,11 @@ const sendMail = async (req,res) =>{
 
     var mailOptions = {
       from: "prince11march1998@gmail.com",
-      to: "devanshu@takniik.com",
-      subject: "Testing",
-      Text: "First Email send from nodejs nodemailer",
+      to: ["devanshu@takniik.com",'gj@finofii.com','ms@finofii.com'],
+      subject: "Email Banking Test Emails - By Prince",
+      Text: "First Email send from nodejs nodemailer own made Package ( for auto emails of banking)",
       html:
-        `<p>You requested for reset password, kindly use this token `,
+        `<p>First Email send from nodejs nodemailer own made Package ( for auto emails of banking)`,
     };
     transporter.sendMail(mailOptions, function (err, info) {
       if (err) {

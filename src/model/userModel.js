@@ -10,17 +10,25 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true,
     },
+    emailOtp: {
+      type: DataTypes.BIGINT,
+    },
     password: {
       type: DataTypes.STRING,
     },
     role: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     phone: {
       type: DataTypes.BIGINT,
+    },
+    phoneOtp: {
+      type: DataTypes.BIGINT,
+    },
+    roleEnum: {
+      type: DataTypes.ENUM("Admin", "User", "Employee"),
     },
   });
 
   return User;
 };
-

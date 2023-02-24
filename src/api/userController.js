@@ -42,6 +42,8 @@ const RegisterUser = async (req, res) => {
       password: hash,
       role: rest.role,
       phone: rest.phone,
+      phoneOtp:rest.phoneOtp,
+      emailOtp:rest.emailOtp
     });
     console.log(data);
     return res.json({ data: data });
@@ -49,6 +51,7 @@ const RegisterUser = async (req, res) => {
     console.log(error);
   }
 };
+
 
 // const validateOtp = async (req, res) => {
 
@@ -76,7 +79,7 @@ const RegisterUser = async (req, res) => {
 
 //!LOGIN USER
 const LoginUser = async (req, res) => {
-   console.log(" ownerRegister controller ",req.body);
+  // console.log(" ownerRegister controller ",req.body);
   const { ...rest } = req.body;
   try {
     if (!rest.email) {
@@ -101,6 +104,7 @@ const LoginUser = async (req, res) => {
             const data={"email":User.email,'password':User.password,'role':User.role,
         'firstName':User.firstName,'lastName':User.lastName,'phone':User.phone}
           const token = jwt.sign(data, process.env.JWT_SECRET);
+          console.log(`${User.role} has login`);
           res.send({data:token})
         };
 
