@@ -1,4 +1,4 @@
-const { user } = require("../config/dbConnection");
+const { user } = require("../../config/dbConnection");
 
 const roleWiseGetDetails  =async (req,res) =>{
     const data=await user.findOne({where:{

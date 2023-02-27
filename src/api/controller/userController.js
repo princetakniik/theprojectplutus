@@ -1,9 +1,9 @@
-const { user } = require("../config/dbConnection");
+const { user } = require("../../config/dbConnection");
 require("dotenv").config();
 const {Auth} = require('two-step-auth');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
-const { createJWT } = require("../middleware/authorizations");
+//const { createJWT } = require("../middleware/authorizations");
 
 const validateOtp = async(req,res) =>{
   //const res = await Auth(emailId);
@@ -11,7 +11,6 @@ const validateOtp = async(req,res) =>{
   const result = await Auth(emailId, "Company Name");
   console.log("res",result);
 }
-
 const RegisterUser = async (req, res) => {
   console.log(" ownerRegister controller ", req.body);
   const { ...rest } = req.body;
@@ -20,14 +19,12 @@ const RegisterUser = async (req, res) => {
       console.log("Please provide all values");
       res.send({ msg: "Please provide all values" });
     }
-
     //checking if user exist
     const userAlreadyExist = await user.findOne({
       where: {
         email: rest.email,
       },
     });
-
     if (userAlreadyExist) {
       res.send({ msg: "User already exist" });
     }
@@ -53,17 +50,15 @@ const RegisterUser = async (req, res) => {
 };
 
 
-// const validateOtp = async (req, res) => {
+ //const validateOtp = async (req, res) => {
 
 //   console.log(" validateOtp controller ",req.body);
 //   const { email, userId } = req.user;
 //   console.log("email",email);
 //   try {
-
 //     if(Object.keys(req.body).length === 0){    
 //       return res.status(204).json({status:constant.status.error, message:" Empty request ", data:{}})
 //     }
-
 //       // -----------------------------   Otp validadate and return  ---------------------------- 
 //         let validateUser = await user.findOne({ email: email });
 //         if (validateUser) {
@@ -74,11 +69,11 @@ const RegisterUser = async (req, res) => {
 //     console.log("validateOtp api ...",error);
 //     return res.json({status:constant.status.error, message:constant.message.errorSomethingWorng, data:{}})
 //   }
-// };
-
+ //};
 
 //!LOGIN USER
 const LoginUser = async (req, res) => {
+   console.log(" ownerRegister controller ",req.body);
   // console.log(" ownerRegister controller ",req.body);
   const { ...rest } = req.body;
   try {
@@ -86,7 +81,6 @@ const LoginUser = async (req, res) => {
       console.log("Please provide all the values");
       res.send({msg:'Please provide all the values'})
     }
-
     //checking if user exist in DB
     const User = await user.findOne({
       where: { email: rest.email },
@@ -113,7 +107,6 @@ const LoginUser = async (req, res) => {
     res.status(500).send({ msg: "Incorrect email or password" });
   }
 };
-
 module.exports = {
   RegisterUser,
   LoginUser,

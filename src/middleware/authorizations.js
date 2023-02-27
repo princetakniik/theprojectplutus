@@ -1,4 +1,3 @@
-//const { response } = require("express");
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 const fast2sms = require("fast-two-sms");

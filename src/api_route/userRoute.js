@@ -1,21 +1,37 @@
-const { roleWiseGetDetails } = require("../api/roleManagement");
+const {
+  roleWiseGetDetails,
+} = require("../api/controller/roleManagementController");
 const {
   RegisterUser,
-  LoginUser,
   validateOtp,
-} = require("../api/userController");
+  LoginUser,
+} = require("../api/controller/userController");
+const { userDetails } = require("../api/controller/userDetailsController");
 const {
-  userOtpValidate,
-  generateOtp,
   usefast2sms,
+  generateOtp,
   sendMail,
 } = require("../middleware/authorizations");
+const { upload } = require("../middleware/fileUpload");
 
 module.exports = function (app) {
-  app.post("/api", (req, res) => RegisterUser(req, res));
+   app.post("/api", (req, res) => RegisterUser(req, res));
   app.post("api/otp", (req, res) => validateOtp(req, res));
-  app.get("/api",LoginUser,roleWiseGetDetails, (req, res,next) =>LoginUser (req, res,next));
+  app.get("/api",LoginUser, (req, res) => roleWiseGetDetails(req, res));
   app.post("/otpgenerate", (req, res) => generateOtp(req, res));
-  app.get('/fast',(req,res)=>usefast2sms(req,res));
-  app.get('/mail',(req,res)=>sendMail(req,res));
+  app.get("/fast", (req, res) => usefast2sms(req, res));
+  app.get("/mail", (req, res) => sendMail(req, res));
+
+  app.post('/userdetails',(req,res)=>userDetails(req,res));
+//   app.post("/uploads", (req, res, next) => {
+//     upload(req, res, function (err) {
+//       if (err) {
+//         return res.send("file do not uploads");
+//       }
+//       res.send("uploads complete");
+//       let file = req.files;
+//       console.log("files", file.filename);
+//     });
+//   });
+
 };

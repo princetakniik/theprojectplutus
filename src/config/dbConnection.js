@@ -17,5 +17,6 @@ sequelize.sync().then(()=>{
 const db={}
 db.sequelize=sequelize;
 db.Sequelize=Sequelize;
-db.user=require('../model/userModel')(sequelize,sequelize,DataTypes);
+db.user=require('../model/userModel')(sequelize,Sequelize,DataTypes);
+db.userdetails=require('../model/userDetailsModel')(sequelize,Sequelize,DataTypes)
 module.exports = db;
