@@ -49,27 +49,6 @@ const RegisterUser = async (req, res) => {
   }
 };
 
-//const validateOtp = async (req, res) => {
-
-//   console.log(" validateOtp controller ",req.body);
-//   const { email, userId } = req.user;
-//   console.log("email",email);
-//   try {
-//     if(Object.keys(req.body).length === 0){
-//       return res.status(204).json({status:constant.status.error, message:" Empty request ", data:{}})
-//     }
-//       // -----------------------------   Otp validadate and return  ----------------------------
-//         let validateUser = await user.findOne({ email: email });
-//         if (validateUser) {
-//           let userDetails =  await userSignupServices(res,email)
-//           return res.status(403).json({status:constant.status.suce, message: constant.message.getdatasucess, data:userDetails})
-//         }
-//   } catch (error) {
-//     console.log("validateOtp api ...",error);
-//     return res.json({status:constant.status.error, message:constant.message.errorSomethingWorng, data:{}})
-//   }
-//};
-
 //!LOGIN USER
 const LoginUser = async (req, res) => {
   console.log(" ownerRegister controller ", req.body);
@@ -111,6 +90,7 @@ const LoginUser = async (req, res) => {
     res.status(500).send({ msg: "Incorrect email or password" });
   }
 };
+
 module.exports = {
   RegisterUser,
   LoginUser,

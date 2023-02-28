@@ -26,7 +26,6 @@ const getLawOfAmendment = async (req, res) => {
 };
 
 const getByIdLawOfAmendment = async (req, res) => {
-  console.log("lawOfAmendment api data", req.body);
   try {
     const lawData = await lawOfAmendment.findOne({
       where: {

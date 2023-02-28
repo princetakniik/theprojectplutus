@@ -41,6 +41,7 @@ try{
   }
 
   const updateHierarchy = async (req,res) => {
+    console.log("Hierarchy api data", req.body);
 try{
     const hierarchyData = await hierarchy.update(req.body,{
         where:{
