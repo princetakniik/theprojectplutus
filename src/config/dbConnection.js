@@ -19,4 +19,6 @@ db.sequelize=sequelize;
 db.Sequelize=Sequelize;
 db.user=require('../model/userModel')(sequelize,Sequelize,DataTypes);
 db.userdetails=require('../model/userDetailsModel')(sequelize,Sequelize,DataTypes)
+db.lawOfAmendment=require('../model/lawOfAmendmentModel')(sequelize,Sequelize,DataTypes);
+db.hierarchy = require('../model/herarchyModel')(sequelize,Sequelize,DataTypes);
 module.exports = db;

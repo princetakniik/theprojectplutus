@@ -22,7 +22,8 @@ router.use((req, res, next) => {
   })
   app.use('/', router)
 const port =process.env.PORT||5000;
-require('./src/api_route/userRoute')(app)
+require('./Router')(app)
+//require('./src/api_route/userRoute')(app)
 require('./src/middleware/fileUpload')(app)
 app.get('/',(req,res)=>{
   res.send('hello')
