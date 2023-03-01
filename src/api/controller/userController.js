@@ -149,26 +149,26 @@ const updateUser = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
-  try {
-    const data = { isDeleate: true };
-    const { email } = req.body;
-    const deleteData = await user.update(data, {
-      where: {
-        email,
-      },
-    });
-    res.status(200).json({ msg: "user delete successfully", data: deleteData });
-  } catch (err) {
-    console.log(err);
-    res.send({ msg: "not delete data", err });
-  }
-};
+// const deleteUser = async (req, res) => {
+//   try {
+//     const data = { isDeleate: true };
+//     const { email } = req.body;
+//     const deleteData = await user.update(data, {
+//       where: {
+//         email,
+//       },
+//     });
+//     res.status(200).json({ msg: "user delete successfully", data: deleteData });
+//   } catch (err) {
+//     console.log(err);
+//     res.send({ msg: "not delete data", err });
+//   }
+// };
 
 module.exports = {
   RegisterUser,
   LoginUser,
   validateOtp,
   updateUser,
-  deleteUser
+  //deleteUser
 };

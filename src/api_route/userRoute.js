@@ -6,7 +6,7 @@ const {
   validateOtp,
   LoginUser,
   updateUser,
-  deleteUser,
+  //deleteUser,
 } = require("../api/controller/userController");
 const { userDetails } = require("../api/controller/userDetailsController");
 const {
@@ -27,7 +27,7 @@ module.exports = function (app) {
   app.post('/userdetails',(req,res)=>userDetails(req,res));
   //user update
   app.put ('/updateUser',(req,res) => updateUser (req,res));
-  app.delete ('/deleteUser', (req,res) => deleteUser (req,res));
+ // app.delete ('/deleteUser', (req,res) => deleteUser (req,res));
 //   app.post("/uploads", (req, res, next) => {
 //     upload(req, res, function (err) {
 //       if (err) {

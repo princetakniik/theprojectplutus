@@ -4,4 +4,11 @@ module.exports =(app)=>{
     require('./src/api_route/hierarchyRoute')(app);
     require('./src/api_route/DirectorRouter')(app);
     require('./src/api_route/complianceRouter')(app);
+
+    //Employee
+
+    //Admin
+    require('./src/api_route/makeannounceRouter')(app);
+    require('./src/api_route/publishAnnouncementRouter')(app)
+
 }

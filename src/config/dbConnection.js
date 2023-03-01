@@ -23,5 +23,7 @@ db.lawOfAmendment=require('../model/lawOfAmendmentModel')(sequelize,Sequelize,Da
 db.hierarchy = require('../model/herarchyModel')(sequelize,Sequelize,DataTypes);
 db.directordetails =require('../model/DirectorModel')(sequelize,Sequelize,DataTypes);
 db.compliance = require ('../model/ComplianceModel')(sequelize,Sequelize,DataTypes);
-
+//Admin
+db.makeannounce = require('../model/makeAnnouncementModel')(sequelize,Sequelize,DataTypes);
+db.publishannounce = require('../model/publishAnnouncementModel')(sequelize,Sequelize,DataTypes);
 module.exports = db;
