@@ -22,4 +22,6 @@ db.userdetails=require('../model/userDetailsModel')(sequelize,Sequelize,DataType
 db.lawOfAmendment=require('../model/lawOfAmendmentModel')(sequelize,Sequelize,DataTypes);
 db.hierarchy = require('../model/herarchyModel')(sequelize,Sequelize,DataTypes);
 db.directordetails =require('../model/DirectorModel')(sequelize,Sequelize,DataTypes);
+db.compliance = require ('../model/ComplianceModel')(sequelize,Sequelize,DataTypes);
+
 module.exports = db;

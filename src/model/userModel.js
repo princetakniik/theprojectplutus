@@ -25,6 +25,11 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
     phoneOtp: {
       type: DataTypes.BIGINT,
     },
+    isDeleate: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
     roleEnum: {
       type: DataTypes.ENUM("Admin", "User", "Employee"),
     },
