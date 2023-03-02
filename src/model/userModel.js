@@ -30,6 +30,15 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: false,
     },
+    plainType:{
+      type:DataTypes.STRING
+    },
+    startData:{
+      type:DataTypes.DATE
+    },
+    endDate:{
+      type:DataTypes.DATE
+    },
     roleEnum: {
       type: DataTypes.ENUM("Admin", "User", "Employee"),
     },

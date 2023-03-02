@@ -9,6 +9,8 @@ module.exports =(app)=>{
 
     //Admin
     require('./src/api_route/makeannounceRouter')(app);
-    require('./src/api_route/publishAnnouncementRouter')(app)
+    require('./src/api_route/publishAnnouncementRouter')(app);
+    require('./src/api_route/addClientRouter')(app);
+    require('./src/api_route/clientRouter')(app);
 
 }
