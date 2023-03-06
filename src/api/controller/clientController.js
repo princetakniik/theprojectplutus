@@ -5,7 +5,7 @@ const getAllClient = async (req, res) => {
     const getData = await user.findAll({
         attributes: ['id','firstName','lastName'],
       where: {
-        role: 'Employee'
+        role: 'Admin'
       },
     });
     res.status(200).json({ msg: "get all client details", data: getData });
@@ -17,11 +17,11 @@ const getAllClient = async (req, res) => {
 
 const getClientByUser = async (req, res) => {
   try {
-    const getData = await user.findAll({
+    const getData = await user.findOne({
         attributes: ['firstName','lastName'],
       where: {
         id:req.params.id,
-        role: 'Employee'
+        role: 'Admin'
       },
     });
     res.status(200).json({ msg: "get all client details", data: getData });

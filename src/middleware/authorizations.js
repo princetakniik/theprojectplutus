@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 const fast2sms = require("fast-two-sms");
 const nodemailer = require("nodemailer");
-
+fast2smskey="mySFvt7CuNbagNGCoUotkB1nrBDUfpvXka1fQvGsRKGmgVVS4ike07dKJ69a"
 const sendMail = async (req,res) =>{
   try{
 
@@ -83,28 +83,14 @@ const generateOtp = async (req, res) => {
   // for (let i = 0; i < 4; i++ ) {
   //     OTP += digits[Math.floor(Math.random() * 10)];
   // }
-  // const OTP = otpGenerator.generate(6, {
-  //   digits: true,
-  //   lowerCaseAlphabets: false,
-  //   upperCaseAlphabets: false,
-  //   specialChars: false,
-  // });
-  // console.log(OTP);
-  // const number = req.body.mobile;
-  // const otp = { number: number, otp: OTP };
-  // console.log("otp", otp);
-  // var options = {authorization:'x3fE1DbYn4X0GqIoilwWOsVFrycNgHP9Ku2SATzMeQCamZ8h76GOons46c2tfr7aUNPkS9xyEwBHzYjJ',message : 'YOUR otp is 5543', numbers : [req.body.mobile]}
-  // console.log("data",options);
-  const response = await fast2sms.sendMessage({
-    authorization:
-      "x3fE1DbYn4X0GqIoilwWOsVFrycNgHP9Ku2SATzMeQCamZ8h76GOons46c2tfr7aUNPkS9xyEwBHzYjJ",
-    message: "your otp is 44444",
-    numbers: ["8434443026"],
+  const OTP = otpGenerator.generate(6, {
+    digits: true,
+    lowerCaseAlphabets: false,
+    upperCaseAlphabets: false,
+    specialChars: false,
   });
-  console.log("response", response);
-  res.send({ data: response });
-  //const result =await otp.save();
-  // res.send({ msg: "send otp succesfully", number: otp });
+  console.log(OTP);
+  res.send({ msg: "send otp succesfully", data:OTP });
 };
 
 const usefast2sms =async(req,res) =>{
@@ -115,6 +101,7 @@ const usefast2sms =async(req,res) =>{
     message: "your otp is 44444",
     numbers: ['8434443026'],
   });
+  
   console.log("data",response);
 }catch(err){
   console.log(err);

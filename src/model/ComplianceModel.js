@@ -10,6 +10,9 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: true,
             defaultValue: false,
+          },
+          complainDate :{
+            type:DataTypes.DATE
           }
         })    
 return Compliance

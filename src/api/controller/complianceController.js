@@ -67,14 +67,16 @@ const updateCompliance = async (req, res) => {
 
 const deleteCompliance = async (req, res) => {
   try {
-    const data={isDeleate:'true'}
-    const id=req.params.id
-    const datadelete = await compliance.update(data,{
-        where:{
-            id
-        }
-    })
-    res.status(200).json({ msg: "compliance data delete successfully", data:datadelete });
+    const data = { isDeleate: "true" };
+    const id = req.params.id;
+    const datadelete = await compliance.update(data, {
+      where: {
+        id,
+      },
+    });
+    res
+      .status(200)
+      .json({ msg: "compliance data delete successfully", data: datadelete });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: `compliance not delete`, err });

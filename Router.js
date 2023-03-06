@@ -1,16 +1,15 @@
-module.exports =(app)=>{
-    require('./src/api_route/userRoute')(app);
-    require('./src/api_route/LawOfAmendmentRoute')(app);
-    require('./src/api_route/hierarchyRoute')(app);
-    require('./src/api_route/DirectorRouter')(app);
-    require('./src/api_route/complianceRouter')(app);
+module.exports = (app) => {
+  require("./src/api_route/userRoute")(app);
+  require("./src/api_route/LawOfAmendmentRoute")(app);
+  require("./src/api_route/hierarchyRoute")(app);
+  require("./src/api_route/DirectorRouter")(app);
+  require("./src/api_route/complianceRouter")(app);
 
-    //Employee
-
-    //Admin
-    require('./src/api_route/makeannounceRouter')(app);
-    require('./src/api_route/publishAnnouncementRouter')(app);
-    require('./src/api_route/addClientRouter')(app);
-    require('./src/api_route/clientRouter')(app);
-
-}
+  //Employee
+  require("./src/api_route/employeeRouter")(app);
+  //Admin
+  require("./src/api_route/makeannounceRouter")(app);
+  require("./src/api_route/publishAnnouncementRouter")(app);
+  require("./src/api_route/addClientRouter")(app);
+  require("./src/api_route/clientRouter")(app);
+};
