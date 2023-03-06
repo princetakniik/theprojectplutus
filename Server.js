@@ -21,6 +21,7 @@ router.use((req, res, next) => {
   })
   app.use('/', router)
 const port =process.env.PORT||5000;
+require('./src/api/constant/status')
 require('./Router')(app)
 require('./src/middleware/fileUpload')(app)
 app.get('/',(req,res)=>{
