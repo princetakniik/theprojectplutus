@@ -7,6 +7,7 @@ module.exports = (app) => {
 
   //Employee
   require("./src/api_route/employeeRouter")(app);
+  require('./src/api_route/AssignUserEmployeeRouter')(app);
   //Admin
   require("./src/api_route/makeannounceRouter")(app);
   require("./src/api_route/publishAnnouncementRouter")(app);

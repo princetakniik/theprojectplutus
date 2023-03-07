@@ -1,4 +1,4 @@
-const {Sequelize,DataTypes} = require('sequelize')
+const {Sequelize,DataTypes,QueryTypes} = require('sequelize')
 const sequelize =new Sequelize('plutos','root','root',{
     port:3306,
     host:'localhost',
@@ -26,4 +26,6 @@ db.compliance = require ('../model/ComplianceModel')(sequelize,Sequelize,DataTyp
 //Admin
 db.makeannounce = require('../model/makeAnnouncementModel')(sequelize,Sequelize,DataTypes);
 db.publishannounce = require('../model/publishAnnouncementModel')(sequelize,Sequelize,DataTypes);
+//Assine Admin User Employees
+db.assineuseremployee =require('../model/assineUserEmpModel')(sequelize,Sequelize,DataTypes);
 module.exports = db;
