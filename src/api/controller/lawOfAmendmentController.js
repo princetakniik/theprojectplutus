@@ -15,7 +15,7 @@ const getLawOfAmendment = async (req, res) => {
   try {
     const lawData = await lawOfAmendment.findAll({
         where:{
-            isDeleate:'false'
+          isDelete:'false'
         }
     });
     res.send({ msg: "get data successfully", data: lawData });
@@ -30,7 +30,7 @@ const getByIdLawOfAmendment = async (req, res) => {
     const lawData = await lawOfAmendment.findOne({
       where: {
         id: req.params.id,
-        isDeleate:'false'
+        isDelete:'false'
       },
     });
     res.send({ msg: "get data By Id successfully", data: lawData });

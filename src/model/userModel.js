@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
     phoneOtp: {
       type: DataTypes.BIGINT,
     },
-    isDeleate: {
+    isDelete: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false,

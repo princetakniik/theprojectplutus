@@ -15,7 +15,7 @@ const getMakeannounce = async (req, res) => {
     try {
         const dataGet = await makeannounce.findAll({
             where:{
-                isDeleate: "false",
+              isDelete: "false",
             }
         })
       res.status(200).json({ msg: "get all makeAnnounce data", data:dataGet });
@@ -30,7 +30,7 @@ const getMakeannounce = async (req, res) => {
         const dataGetById = await makeannounce.findOne({
             where:{
                 id: req.params.id,
-                isDeleate: "false",
+                isDelete: "false",
             }
         })
       res.status(200).json({ msg: "get data by id makeAnnounce", data:dataGetById });
@@ -58,7 +58,7 @@ const getMakeannounce = async (req, res) => {
   };
 
   const deleteMakeannounce = async (req, res) => {
-    const data ={isDeleate:'true'}
+    const data ={isDelete:'true'}
     const id=req.params.id
     try {
         const dataDelete = await makeannounce.update(data,{

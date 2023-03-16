@@ -6,11 +6,11 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
           general : {
             type : DataTypes.STRING
           },
-          isDeleate: {
-            type: DataTypes.BOOLEAN,
+          isDelete :{
+            type:DataTypes.BOOLEAN,
             allowNull: true,
             defaultValue: false,
-          },
+        },
           complainDate :{
             type:DataTypes.DATE
           }

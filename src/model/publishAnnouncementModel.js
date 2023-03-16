@@ -6,11 +6,11 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
           employees : {
             type : DataTypes.STRING
           },
-          isDeleate: {
-            type: DataTypes.BOOLEAN,
+          isDelete :{
+            type:DataTypes.BOOLEAN,
             allowNull: true,
             defaultValue: false,
-          }
+        }
         })    
 return publishAnnounce
 }

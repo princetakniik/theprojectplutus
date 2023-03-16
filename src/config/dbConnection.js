@@ -28,4 +28,5 @@ db.makeannounce = require('../model/makeAnnouncementModel')(sequelize,Sequelize,
 db.publishannounce = require('../model/publishAnnouncementModel')(sequelize,Sequelize,DataTypes);
 //Assine Admin User Employees
 db.assineuseremployee =require('../model/assineUserEmpModel')(sequelize,Sequelize,DataTypes);
+db.issueemp =require('../model/IssueEmpModel')(sequelize,Sequelize,DataTypes);
 module.exports = db;

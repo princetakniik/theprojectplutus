@@ -15,7 +15,7 @@ const CreateDirectors = async (req, res) => {
 try{
     const directorsData = await directordetails.findAll({
         where:{
-            isDeleate:'false'
+          isDelete:'false'
         }
     });
 res.send({msg:'get data successfully directors',data:directorsData})
@@ -30,7 +30,7 @@ try{
     const directorsData = await directordetails.findOne({
         where:{
             id: req.params.id,
-            isDeleate:'false'
+            isDelete:'false'
         }
     });
 res.send({msg:'get data by id successfully directors',data:directorsData})
@@ -57,7 +57,7 @@ res.send({msg:'update data successfully director',data:directorsData})
 
   const deleteDirectors = async (req,res) => {
 try{
-    const data={isDeleate:true}
+    const data={isDelete:true}
     const id=req.params.id
     const directorsData = await directordetails.update(data,{
         where: {

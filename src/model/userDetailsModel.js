@@ -32,6 +32,11 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         },
         registeredAddress:{
             type:DataTypes.STRING
+        },
+        isDelete :{
+            type:DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false,
         }
 
     });

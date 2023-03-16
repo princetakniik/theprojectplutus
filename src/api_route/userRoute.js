@@ -21,7 +21,7 @@ module.exports = function (app) {
   app.post("api/otp", (req, res) => validateOtp(req, res));
   app.get("/api",LoginUser, (req, res) => roleWiseGetDetails(req, res));
   app.post("/otpgenerate", (req, res) => generateOtp(req, res));
-  app.get("/fast", (req, res) => usefast2sms(req, res));
+  app.post("/fast", (req, res) => usefast2sms(req, res));
   app.get("/mail", (req, res) => sendMail(req, res));
 
   app.post('/userdetails',(req,res)=>userDetails(req,res));

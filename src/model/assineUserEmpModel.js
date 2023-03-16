@@ -10,10 +10,10 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       type: DataTypes.BIGINT,
     },
     isDelete :{
-        type:DataTypes.BOOLEAN,
-        allowNull: true,
-        defaultValue: false,
-    }
+      type:DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+  }
   });
   return AssineUserEmployee;
 };

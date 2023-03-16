@@ -15,7 +15,7 @@ const CreateHierarchy = async (req, res) => {
 try{
     const hierarchyData = await hierarchy.findAll({
         where:{
-            isDeleate:'false'
+          isDelete:'false'
         }
     });
     res.send({msg:'get hierarchy data successfully',data:hierarchyData})
@@ -30,7 +30,7 @@ try{
     const hierarchyData = await hierarchy.findOne({
         where:{
             id: req.params.id,
-            isDeleate:'false'
+            isDelete:'false'
         }
     });
     res.send({msg:'get data by id successfully',data:hierarchyData})
@@ -57,7 +57,7 @@ res.send({msg:'update data successfully',data:hierarchyData})
 
   const deleteHierarchy = async (req,res) => {
 try{
-    const data={isDeleate:true}
+    const data={isDelete:true}
     const id=req.params.id
 const hierarchyData = await hierarchy.update(data,{
     where: {

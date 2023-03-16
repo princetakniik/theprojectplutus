@@ -51,11 +51,12 @@ const mapUserToEmployeeById = async (req, res) => {
 };
 
 const mapUserToEmployeeUpdate = async(req,res) => {
-    const {} =req.body
+    const {...rest} =req.body
+    const data={User:rest.User}
     try{
-const updateData = await assineuseremployee.update({
+const updateData = await assineuseremployee.update(data,{
     where:{
-        User:user
+        User:req.query.User
     }
 })
 res.status(200).json({msg:'update data successfull',data:updateData})
@@ -66,10 +67,11 @@ res.status(200).json({msg:'update data successfull',data:updateData})
 }
 
 const deleteUserToEmployeeData = async (req,res) => {
+    const data={isDelete:'true'}
     try{
-const deleteData = await assineuseremployee.update({
+const deleteData = await assineuseremployee.update(data,{
     where:{
-        User:User
+        User:req.query.User
     }
 })
 res.status(200).json({msg:'delete data count',data:deleteData})

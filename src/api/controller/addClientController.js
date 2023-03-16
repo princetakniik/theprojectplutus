@@ -15,7 +15,7 @@ const getUser = async (req, res) => {
   try {
     const getData = await user.findAll({
       where: {
-        isDeleate: "false",
+        isDelete: "false",
       },
     });
     res
@@ -33,7 +33,7 @@ const getByIdUserDetail = async (req, res) => {
     const getByIdData = await user.findOne({
         where: {
             email: rest.email,
-          isDeleate: "false",
+            isDelete: "false",
         },
       }); 
     res
@@ -66,7 +66,7 @@ const data={email:rest.email,firstName:rest.firstName,lastName:rest.lastName,ema
 
 const deleteUserDetails = async (req, res) => {
     const email = req.body
-const data ={isDeleate:'true'}
+const data ={isDelete:'true'}
   try {
     const deleteData = await user.update(data,{
         where:{

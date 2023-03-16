@@ -18,7 +18,7 @@ const getCompliance = async (req, res) => {
   try {
     const getData = await compliance.findAll({
       where: {
-        isDeleate: "false",
+        isDelete: "false",
       },
     });
     res
@@ -35,7 +35,7 @@ const getByIdCompliance = async (req, res) => {
     const getById = await compliance.findOne({
       where: {
         id: req.params.id,
-        isDeleate: "false",
+        isDelete: "false",
       },
     });
     res
@@ -67,7 +67,7 @@ const updateCompliance = async (req, res) => {
 
 const deleteCompliance = async (req, res) => {
   try {
-    const data = { isDeleate: "true" };
+    const data = { isDelete: "true" };
     const id = req.params.id;
     const datadelete = await compliance.update(data, {
       where: {

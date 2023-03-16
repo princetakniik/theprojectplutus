@@ -22,7 +22,7 @@ const employeeDetails = async (req, res) => {
       where: {
         id: req.query.id,
         role: "Employee",
-        isDeleate: "false",
+        isDelete: "false",
       },
     });
    
