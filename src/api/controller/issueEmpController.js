@@ -1,7 +1,9 @@
-const { issueemp } = require("../../config/dbConnection");
+const { issueemp, user } = require("../../config/dbConnection");
+const db = require("../../config/dbConnection");
+const { QueryTypes } = require("sequelize");
 
 const issueCreate = async (req, res) => {
-    console.log('data',req.body);
+  console.log("data", req.body);
   try {
     const createIssue = await issueemp.create(req.body);
     res
@@ -15,11 +17,12 @@ const issueCreate = async (req, res) => {
 
 const issueGet = async (req, res) => {
   try {
-    const getissue = await issueemp.findAll({
-      where: {
-        isDelete: "false",
-      },
-    });
+    const getissue = await db.sequelize
+      .query(`select ie.id,CONCAT(u.firstName,' ',u.lastName) as name,ie.empId,ie.issueTitle,ie.area,ie.assignedTo,ie.issueDescription,ie.remarks,ie.status  from users as u
+      inner join issueemps as ie on u.id=ie.empId 
+      where u.role='Employee' `, {
+          type: QueryTypes.SELECT,
+        });
     res.status(200).json({ msg: "data get successfully", data: getissue });
   } catch (err) {
     console.log(err);
@@ -28,13 +31,14 @@ const issueGet = async (req, res) => {
 };
 
 const issueGetById = async (req, res) => {
+  const id = req.query.id;
   try {
-    const getIssuebyId = await issueemp.findOne({
-      where: {
-        id: req.query.id,
-        isDelete: "false",
-      },
-    });
+    const getIssuebyId = await db.sequelize
+      .query(`select ie.id,CONCAT(u.firstName,' ',u.lastName) as name,ie.empId,ie.issueTitle,ie.area,ie.assignedTo,ie.issueDescription,ie.remarks,ie.status  from users as u
+    inner join issueemps as ie on u.id=ie.empId 
+    where u.role='Employee' & ie.id=${id} & ie.isDelete='false' `, {
+        type: QueryTypes.SELECT,
+      });
     res.status(200).json({ msg: "issue data get by id", data: getIssuebyId });
   } catch (err) {
     console.log(err);
@@ -44,11 +48,11 @@ const issueGetById = async (req, res) => {
 
 const issueUpdate = async (req, res) => {
   const { ...rest } = req.body;
-  console.log('rest',rest);
+  console.log("rest", rest);
   try {
     const updateIssue = await issueemp.update(rest, {
       where: {
-        id:req.query.id,
+        id: req.query.id,
       },
     });
     res

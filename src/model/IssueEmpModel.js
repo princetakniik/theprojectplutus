@@ -21,11 +21,11 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       status: {
         type: Sequelize.ENUM("To Do", "Doing", "completed"),
        },
-      isDelete :{
-          type:DataTypes.BOOLEAN,
-          allowNull: true,
-          defaultValue: false,
-      }
+       isDelete :{
+        type:DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+    },
     });
     return issueEmp;
   };

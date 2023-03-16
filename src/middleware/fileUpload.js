@@ -15,7 +15,7 @@ module.exports = (app) => {
   let upload = multer({ storage: filestorageEngine });
 
   app.post("/uploads", upload.array("file", 4), async (req, res) => {
-    let base_url = "http://localhost:4000";
+    let base_url = process.env.basePort;
     let doc_url = req.files
       ? req.files.map((i) => `${base_url}/profile/${i.filename}`)
       : [];
