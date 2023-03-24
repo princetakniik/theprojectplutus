@@ -5,15 +5,16 @@ const fast2sms = require("fast-two-sms");
 const nodemailer = require("nodemailer");
 
 const sendMail = async (req,res) =>{
+  const user=process.env.pass
+  console.log('user',user);
   try{
-
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.user, // generated ethereal user
-        pass: process.env.pass, // generated ethereal password
+        user:"prince@takniik.com" , // generated ethereal user
+        pass:"aknsmkcyrsomupmv", // generated ethereal password
       },
     });
 

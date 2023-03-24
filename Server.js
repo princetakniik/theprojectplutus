@@ -7,6 +7,16 @@ require('dotenv').config();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app=express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const User = require('./src/middleware/firebase')
+const io = new Server(server,{
+  cors:{
+    origin:"*",
+    methods:["GET","POST","PUT","DELETE"]
+  }
+});
 app.set("view engine", "ejs");
 const db=require('./src/config/dbConnection')
 app.use(cors());
@@ -24,9 +34,36 @@ const port =process.env.PORT||5000;
 require('./src/api/constant/status')
 require('./Router')(app)
 require('./src/middleware/fileUpload')(app)
-app.get('/',(req,res)=>{
-  res.send('hello')
+app.get('/', (req, res) => {
+  res.sendFile(__dirname +  `/index.html` );
+});
+app.post('/create',async(req,res)=>{
+  const data =req.body;
+  await User.add({data});
+  console.log("data",data);
+  res.send({msg:'user added'})
 })
-app.listen(port,()=>{
+// app.get('/',(req,res)=>{
+//   res.send(`Hello ${req.name}`)
+// })
+io.on('connection', (socket)=>{
+  console.log('New user connected');
+   //emit message from server to user
+   socket.emit('newMessage', {
+     from:'jen@mds',
+     text:'hepppp',
+     createdAt:123
+   });
+ 
+  // listen for message from user
+  socket.on('createMessage', (newMessage)=>{
+    console.log('newMessage', newMessage);
+  });
+  socket.on('disconnect', ()=>{
+    console.log('disconnected from user');
+  });
+});
+
+server.listen(port,()=>{
     console.log(`server is connected ${port}`);
 })

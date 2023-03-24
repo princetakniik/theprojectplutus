@@ -50,40 +50,40 @@ const mapUserToEmployeeById = async (req, res) => {
   }
 };
 
-const mapUserToEmployeeUpdate = async(req,res) => {
-    const {...rest} =req.body
-    const data={User:rest.User}
-    try{
-const updateData = await assineuseremployee.update(data,{
-    where:{
-        User:req.query.User
-    }
-})
-res.status(200).json({msg:'update data successfull',data:updateData})
-    }catch(err){
-        console.log(err);
-        res.status(500).json({msg:'dont update'})
-    }
-}
+const mapUserToEmployeeUpdate = async (req, res) => {
+  const { ...rest } = req.body;
+  const data = { User: rest.User };
+  try {
+    const updateData = await assineuseremployee.update(data, {
+      where: {
+        User: req.query.User,
+      },
+    });
+    res.status(200).json({ msg: "update data successfull", data: updateData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "dont update" });
+  }
+};
 
-const deleteUserToEmployeeData = async (req,res) => {
-    const data={isDelete:'true'}
-    try{
-const deleteData = await assineuseremployee.update(data,{
-    where:{
-        User:req.query.User
-    }
-})
-res.status(200).json({msg:'delete data count',data:deleteData})
-    }catch(err){
-        console.log(err);
-        res.status(500).json({msg:'data do not delete',err})
-    }
-}
+const deleteUserToEmployeeData = async (req, res) => {
+  const data = { isDelete: "true" };
+  try {
+    const deleteData = await assineuseremployee.update(data, {
+      where: {
+        User: req.query.User,
+      },
+    });
+    res.status(200).json({ msg: "delete data count", data: deleteData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "data do not delete", err });
+  }
+};
 module.exports = {
   mapUserToEmployee,
   mapUserToEmployeeGet,
   mapUserToEmployeeById,
   mapUserToEmployeeUpdate,
-  deleteUserToEmployeeData
+  deleteUserToEmployeeData,
 };

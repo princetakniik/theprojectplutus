@@ -1,5 +1,5 @@
 const { user } = require("../../config/dbConnection");
-const {status} = require("../constant/status");
+const { status } = require("../constant/status");
 
 const EmployeeManagement = async (req, res) => {
   try {
@@ -25,7 +25,7 @@ const employeeDetails = async (req, res) => {
         isDelete: "false",
       },
     });
-   
+
     res.status(200).json({ msg: "get data successful", data: employeeData });
   } catch (err) {
     console.log(err);

@@ -16,6 +16,7 @@ const getUser = async (req, res) => {
     const getData = await user.findAll({
       where: {
         isDelete: "false",
+        role:'User'
       },
     });
     res
@@ -28,17 +29,20 @@ const getUser = async (req, res) => {
 };
 
 const getByIdUserDetail = async (req, res) => {
-    const {...rest} = req.body;
+  const { ...rest } = req.body;
   try {
     const getByIdData = await user.findOne({
-        where: {
-            email: rest.email,
-            isDelete: "false",
-        },
-      }); 
+      where: {
+        email: rest.email,
+        isDelete: "false",
+      },
+    });
     res
       .status(200)
-      .json({ msg: "data get by id user created by client..", data:getByIdData });
+      .json({
+        msg: "data get by id user created by client..",
+        data: getByIdData,
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "data not get user ..", err });
@@ -46,15 +50,28 @@ const getByIdUserDetail = async (req, res) => {
 };
 
 const updateUserDetails = async (req, res) => {
-    console.log('api data update ....',req.body);
-    const {...rest} =req.body
-const data={email:rest.email,firstName:rest.firstName,lastName:rest.lastName,emailOtp:rest.emailOtp,password:rest.password,role:rest.role,phone:rest.phone,phoneOtp:rest.phoneOtp,roleEnum:rest.roleEnum,plainType:rest.plainType,startData:rest.startData,endDate:rest.endDate}
+  console.log("api data update ....", req.body);
+  const { ...rest } = req.body;
+  const data = {
+    email: rest.email,
+    firstName: rest.firstName,
+    lastName: rest.lastName,
+    emailOtp: rest.emailOtp,
+    password: rest.password,
+    role: rest.role,
+    phone: rest.phone,
+    phoneOtp: rest.phoneOtp,
+    roleEnum: rest.roleEnum,
+    plainType: rest.plainType,
+    startData: rest.startData,
+    endDate: rest.endDate,
+  };
   try {
-    const updateData = await user.update(data,{
-        where:{
-            email:rest.Email
-        }
-    }) 
+    const updateData = await user.update(data, {
+      where: {
+        email: rest.Email,
+      },
+    });
     res
       .status(200)
       .json({ msg: "data update by id user created by client..", data });
@@ -65,28 +82,30 @@ const data={email:rest.email,firstName:rest.firstName,lastName:rest.lastName,ema
 };
 
 const deleteUserDetails = async (req, res) => {
-    const email = req.body
-const data ={isDelete:'true'}
+  const email = req.body;
+  const data = { isDelete: "true" };
   try {
-    const deleteData = await user.update(data,{
-        where:{
-            email
-        }
-    })
+    const deleteData = await user.update(data, {
+      where: {
+        email,
+      },
+    });
     res
       .status(200)
-      .json({ msg: "data delete by id user created by client..", data:deleteData });
+      .json({
+        msg: "data delete by id user created by client..",
+        data: deleteData,
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "data not get user ..", err });
   }
 };
 
-
-module.exports ={
-    createUser,
-    getUser,
-    getByIdUserDetail,
-    updateUserDetails,
-    deleteUserDetails
-}
+module.exports = {
+  createUser,
+  getUser,
+  getByIdUserDetail,
+  updateUserDetails,
+  deleteUserDetails,
+};

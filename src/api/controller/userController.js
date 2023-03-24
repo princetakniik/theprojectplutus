@@ -71,7 +71,7 @@ const LoginUser = async (req, res) => {
     }
     const compare = bcrypt.compareSync(rest.password, User.password);
     if (!compare) {
-      res.send({ success: false, message: "passwords do not match" });
+      res.send({ success: false, message: "email and passwords do not match" });
     } else {
       const data = {
         email: User.email,
