@@ -3,14 +3,13 @@ const router = express.Router();
 const path = require('path');
 const ejs=require('ejs')
 const cookieParser = require('cookie-parser')
-require('dotenv').config();
+const config =require('./src/config/config')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app=express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const User = require('./src/middleware/firebase')
 const io = new Server(server,{
   cors:{
     origin:"*",
@@ -30,22 +29,11 @@ router.use((req, res, next) => {
     next()
   })
   app.use('/', router)
-const port =process.env.PORT||5000;
+const port =config.PORT||5000;
 require('./src/api/constant/status')
 require('./Router')(app)
 require('./src/middleware/fileUpload')(app)
-app.get('/', (req, res) => {
-  res.sendFile(__dirname +  `/index.html` );
-});
-app.post('/create',async(req,res)=>{
-  const data =req.body;
-  await User.add({data});
-  console.log("data",data);
-  res.send({msg:'user added'})
-})
-// app.get('/',(req,res)=>{
-//   res.send(`Hello ${req.name}`)
-// })
+
 io.on('connection', (socket)=>{
   console.log('New user connected');
    //emit message from server to user

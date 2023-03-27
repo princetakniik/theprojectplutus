@@ -4,7 +4,7 @@ module.exports = (app) => {
   require("./src/api_route/hierarchyRoute")(app);
   require("./src/api_route/DirectorRouter")(app);
   require("./src/api_route/complianceRouter")(app);
-
+require('./src/api_route/firebaseRoute')(app)
   //Employee
   require("./src/api_route/employeeRouter")(app);
   require('./src/api_route/AssignUserEmployeeRouter')(app);
