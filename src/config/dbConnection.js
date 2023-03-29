@@ -1,6 +1,6 @@
 const {Sequelize,DataTypes,QueryTypes} = require('sequelize')
 const sequelize =new Sequelize('plutos','root','root',{
-    port:3306,
+    //port:3306,
     dialect: 'mysql',
     host: "127.0.0.1",
     logging: false
