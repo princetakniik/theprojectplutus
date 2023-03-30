@@ -1,7 +1,6 @@
 const express=require('express');
 const router = express.Router();
 const path = require('path');
-const mysql = require('mysql');
 const ejs=require('ejs')
 const cookieParser = require('cookie-parser')
 const config =require('./src/config/config')
