@@ -11,7 +11,7 @@ connection.connect(function(err) {
       return;
     }
    
-    console.log('connected as id ' + connection.threadId);
+    console.log('db connected as id ' + connection.threadId);
   });
 // const {Sequelize,DataTypes,QueryTypes} = require('sequelize')
 // const sequelize =new Sequelize('plutos','root','root',{
