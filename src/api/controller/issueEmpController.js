@@ -20,7 +20,7 @@ const issueGet = async (req, res) => {
     const getissue = await db.sequelize.query(
       `select ie.id,CONCAT(u.firstName,' ',u.lastName) as name,ie.empId,ie.issueTitle,ie.area,ie.assignedTo,ie.issueDescription,ie.remarks,ie.status  from users as u
       inner join issueemps as ie on u.id=ie.empId 
-      where u.role='Employee' `,
+      where u.role='Employee' & ie.isDelete='false'`,
       {
         type: QueryTypes.SELECT,
       }

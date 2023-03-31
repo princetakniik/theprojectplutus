@@ -1,6 +1,7 @@
-const userdetails = require("../../config/dbConnection");
+const {userdetails} = require("../../config/dbConnection");
 
 const userDetails = async (req, res) => {
+  console.log('api....',req.body);
   try {
     const userData = await userdetails.create(req.body);
     console.log(userData);

@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         announce: {
             type: DataTypes.STRING,
           },
-          isDeleate: {
+          isDelete: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
             defaultValue: false,

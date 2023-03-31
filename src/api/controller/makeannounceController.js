@@ -18,6 +18,7 @@ const getMakeannounce = async (req, res) => {
         isDelete: "false",
       },
     });
+    console.log('data....',dataGet);
     res.status(200).json({ msg: "get all makeAnnounce data", data: dataGet });
   } catch (err) {
     console.log(err);

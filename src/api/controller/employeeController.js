@@ -5,7 +5,7 @@ const EmployeeManagement = async (req, res) => {
   try {
     const EmployeeData = await user.findAll({
       where: {
-        isDeleate: "false",
+        isDelete: "false",
         role: "Employee",
       },
     });

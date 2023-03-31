@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-const {userDetails} =require('../api/controller/userDetailsController')
 var connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
@@ -23,6 +22,7 @@ const sequelize =new Sequelize('plutos','root','root',{
     host: "localhost",
     logging: false
 })
+ sequelize.sync();
 const db={}
 db.sequelize=sequelize;
 db.Sequelize=Sequelize;
@@ -38,7 +38,7 @@ db.publishannounce = require('../model/publishAnnouncementModel')(sequelize,Sequ
 //Assine Admin User Employees
 db.assineuseremployee =require('../model/assineUserEmpModel')(sequelize,Sequelize,DataTypes);
 db.issueemp =require('../model/IssueEmpModel')(sequelize,Sequelize,DataTypes);
-module.exports = db;
+
 
 
 

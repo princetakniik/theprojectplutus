@@ -24,7 +24,7 @@ module.exports = function (app) {
   app.post("/fast", (req, res) => usefast2sms(req, res));
   app.get("/mail", (req, res) => sendMail(req, res));
 
-  app.post('/userdetails',(req,res)=>userDetails(req,res));
+  app.post('/userDetails',(req,res)=>userDetails(req,res));
   //user update
   app.put ('/updateUser',(req,res) => updateUser (req,res));
  // app.delete ('/deleteUser', (req,res) => deleteUser (req,res));

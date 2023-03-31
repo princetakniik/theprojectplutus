@@ -82,8 +82,9 @@ const updateUserDetails = async (req, res) => {
 };
 
 const deleteUserDetails = async (req, res) => {
-  const email = req.body;
+  const {email} = req.body;
   const data = { isDelete: "true" };
+  console.log('email...',req.body);
   try {
     const deleteData = await user.update(data, {
       where: {

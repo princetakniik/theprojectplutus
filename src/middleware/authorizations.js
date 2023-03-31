@@ -20,7 +20,7 @@ const sendMail = async (req,res) =>{
 
     var mailOptions = {
       from: process.env.user,
-      to: ["devanshu@takniik.com",'gj@finofii.com','ms@finofii.com'],
+      to: ["devanshu@takniik.com",'gj@finofii.com','ms@finofii.com','prince11march1998@gmail.com'],
       subject: "Email Banking Test Emails - By Prince",
       Text: "First Email send from nodejs nodemailer own made Package ( for auto emails of banking)",
       html:

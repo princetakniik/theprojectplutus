@@ -59,7 +59,7 @@ const deleteLawOfAmendment = async (req, res) => {
   console.log("lawOfAmendment api data", req.params);
   try {
     const id = req.params.id;
-    const data = { isDeleate: true };
+    const data = { isDelete: true };
     const lawData = await lawOfAmendment.update(data, {
       where: {
         id,
