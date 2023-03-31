@@ -30,7 +30,7 @@ const RegisterUser = async (req, res) => {
       res.send({ msg: "User already exist" });
     }
     //encrypting the password
-    const salt = bcrypt.genSaltSync(process.env.saltRound);
+    const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(rest.password, salt);
     let data = await user.create({
       firstName: rest.firstName,
