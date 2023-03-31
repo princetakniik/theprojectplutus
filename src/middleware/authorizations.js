@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 const fast2sms = require("fast-two-sms");
+const config = require('../config/config')
 //const client = require('twilio')(accountSid, authToken);
 const nodemailer = require("nodemailer");
 
 const sendMail = async (req,res) =>{
-  const user=process.env.pass
+  const user=config.pass
   console.log('user',user);
   try{
     let transporter = nodemailer.createTransport({
@@ -19,7 +20,7 @@ const sendMail = async (req,res) =>{
     });
 
     var mailOptions = {
-      from: process.env.user,
+      from: config.user,
       to: ["devanshu@takniik.com",'gj@finofii.com','ms@finofii.com','prince11march1998@gmail.com'],
       subject: "Email Banking Test Emails - By Prince",
       Text: "First Email send from nodejs nodemailer own made Package ( for auto emails of banking)",

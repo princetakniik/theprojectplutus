@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const config = require('./config')
 var connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
@@ -17,9 +18,9 @@ connection.connect(function(err) {
   module.exports =connection;
 const {Sequelize,DataTypes,QueryTypes} = require('sequelize')
 const sequelize =new Sequelize('plutos','root','root',{
-    port:3306,
+    port:config.mysql_port,
     dialect: 'mysql',
-    host: "localhost",
+    host: config.host,
     logging: false
 })
  sequelize.sync();
