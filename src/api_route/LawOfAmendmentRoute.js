@@ -15,7 +15,7 @@ module.exports = (app) => {
     getByIdLawOfAmendment(req, res)
   );
   app.put("/updateLawOfAmendment/:id", (req, res) =>
-    updateLawOfAmendment(req, res)
+  updateLawOfAmendment(req, res)
   );
   app.delete("/deleteLawOfAmendment/:id", (req, res) =>
     deleteLawOfAmendment(req, res)

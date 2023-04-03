@@ -1,46 +1,44 @@
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 const fast2sms = require("fast-two-sms");
-const config = require('../config/config')
+const config = require("../config/config");
 //const client = require('twilio')(accountSid, authToken);
 const nodemailer = require("nodemailer");
 
-const sendMail = async (req,res) =>{
-  const user=config.pass
-  console.log('user',user);
-  try{
+const sendMail = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    console.log("otp", otp, "email", email);
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user:"prince@takniik.com" , // generated ethereal user
-        pass:"aknsmkcyrsomupmv", // generated ethereal password
+        user: "prince@takniik.com", // generated ethereal user
+        pass: "moizhjibtfvmwwcs", // generated ethereal password
       },
     });
 
     var mailOptions = {
-      from: config.user,
-      to: ["devanshu@takniik.com",'gj@finofii.com','ms@finofii.com','prince11march1998@gmail.com'],
+      from: "prince@takniik.com",
+      to: [email],
       subject: "Email Banking Test Emails - By Prince",
       Text: "First Email send from nodejs nodemailer own made Package ( for auto emails of banking)",
-      html:
-        `<p>First Email send from nodejs nodemailer own made Package ( for auto emails of banking)`,
+      html: `<p>First Email send from nodejs nodemailer own made Package ( for auto emails of banking) ${otp}`,
     };
     transporter.sendMail(mailOptions, function (err, info) {
       if (err) {
         console.log(err);
-        return false
+        return false;
       } else {
-        console.log("Email sent successfully")
-        res.send(transporter)
+        console.log("Email sent successfully");
+        res.send(transporter);
       }
     });
-
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
-}
+};
 
 const createJWT = async (user) => {
   try {
@@ -93,31 +91,35 @@ const generateOtp = async (req, res) => {
     specialChars: false,
   });
   console.log(OTP);
-  res.send({ msg: "send otp succesfully", data:OTP });
+  res.send({ msg: "send otp succesfully", data: OTP });
 };
 
-const usefast2sms =async(req,res) =>{
-  try{ 
-    const client = require('twilio')(process.env.accountSid, process.env.authToken);
+const usefast2sms = async (req, res) => {
+  try {
+    const { mobile, otp } = req.body;
+    const client = require("twilio")(
+      process.env.accountSid,
+      process.env.authToken
+    );
     client.messages
-    .create({
-       body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-       from: '+919693161773',
-       to: '+918434443026'
-     })
-    .then(message => console.log('touilio',message.sid));
+      .create({
+        body: "This is the ship that made the Kessel Run in fourteen parsecs?",
+        from: "+919693161773",
+        to: "+918434443026",
+      })
+      .then((message) => console.log("touilio", message.sid));
 
-  var response =await fast2sms.sendMessage({
-    authorization :"w1qDBIOa6kFJCuXUxk3mTenptUZpBTABKfUkXIFukEMJp67FmOPbPODS7DLR",
-    message : `he hdfkhk otp is ${11111}`,
-    numbers : ['9931799087','9693161773']
-  })
-  res.send({msg:'send otp successful',response})
-  console.log("data",response);
-}catch(err){
-  console.log(err);
-}
-}
+    var response = await fast2sms.sendMessage({
+      authorization:
+        "w1qDBIOa6kFJCuXUxk3mTenptUZpBTABKfUkXIFukEMJp67FmOPbPODS7DLR",
+      message: `your otp is  ${otp}`,
+      numbers: [mobile],
+    });
+    res.send({ msg: "send otp successful", response });
+    console.log("data", response);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-
-module.exports = { createJWT, verify, generateOtp,usefast2sms,sendMail };
+module.exports = { createJWT, verify, generateOtp, usefast2sms, sendMail };

@@ -36,11 +36,11 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
     $ npm install npm -g
 
-###
+### giit clone :https://github.com/princetakniik/theprojectplutus.git
 
 ## Install
 
-    $ git clone https://github.com/YOUR_USERNAME/PROJECT_TITLE
+  
     $ cd PROJECT_TITLE
     $ npm install
 
@@ -59,3 +59,14 @@ Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
 ## Simple build for production
 
     $ npm build
+
+##  nodemailer
+    $ npm i nodemailer
+
+# mysql workbench
+   $ npm i mysql workbench  
+   $ userName :root
+   $ password:root
+
+# nodemailer
+    $ useremail:prince@takniik.com

@@ -41,9 +41,10 @@ const getByIdLawOfAmendment = async (req, res) => {
 };
 
 const updateLawOfAmendment = async (req, res) => {
-  console.log("lawOfAmendment api data", req.body);
+  const { ...rest } = req.body;
+  console.log("lawOfAmendment api data", rest);
   try {
-    const lawData = await lawOfAmendment.update(req.body, {
+    const lawData = await lawOfAmendment.update(rest, {
       where: {
         id: req.params.id,
       },
