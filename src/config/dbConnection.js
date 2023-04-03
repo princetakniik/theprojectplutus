@@ -4,7 +4,7 @@ var connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
   password: "root",
-  database: "testsql"
+  database: "plutos"
 });
 connection.connect(function(err) {
     if (err) {
