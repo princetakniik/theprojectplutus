@@ -52,7 +52,7 @@ const mapUserToEmployeeById = async (req, res) => {
 
 const mapUserToEmployeeUpdate = async (req, res) => {
   const { ...rest } = req.body;
-  const data = { User: rest.User };
+  const data = { Admin: rest.Admin, User: rest.User, Employee: rest.Employee };
   try {
     const updateData = await assineuseremployee.update(data, {
       where: {

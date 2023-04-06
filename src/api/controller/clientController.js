@@ -2,11 +2,11 @@ const { user } = require("../../config/dbConnection");
 
 const getAllClient = async (req, res) => {
   try {
-    const getData = await user.findAll({
-      attributes: ["id", "firstName", "lastName"],
+    const getData = await user.findAll({ 
       where: {
         role: "Admin",
       },
+      attributes: ["id", "firstName", "lastName"],
     });
     res.status(200).json({ msg: "get all client details", data: getData });
   } catch (err) {
@@ -18,11 +18,11 @@ const getAllClient = async (req, res) => {
 const getClientByUser = async (req, res) => {
   try {
     const getData = await user.findOne({
-      attributes: ["firstName", "lastName"],
       where: {
         id: req.params.id,
         role: "Admin",
       },
+      attributes: ["firstName", "lastName"],
     });
     res.status(200).json({ msg: "get all client details", data: getData });
   } catch (err) {

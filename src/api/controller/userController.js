@@ -113,7 +113,7 @@ const updateUser = async (req, res) => {
     phone: phone,
     phoneOtp: phoneOtp,
   };
-  // console.log("data", data);
+console.log("data", data);
   try {
     // const updateData = await user.update(data, {
     //   where: {
@@ -128,8 +128,8 @@ const updateUser = async (req, res) => {
         email: Email,
       },
     });
-    //console.log("data", alreadyExist.email);
-    console.log("already", alreadyExist.email.length);
+//console.log("data", alreadyExist);
+    console.log("already", alreadyExist.length);
     if (alreadyExist.email.length > 0) {
       if (alreadyExist.email == email) {
         res.send({ msg: "email already present" });
@@ -148,26 +148,26 @@ const updateUser = async (req, res) => {
   }
 };
 
-// const deleteUser = async (req, res) => {
-//   try {
-//     const data = { isDelete: true };
-//     const { email } = req.body;
-//     const deleteData = await user.update(data, {
-//       where: {
-//         email,
-//       },
-//     });
-//     res.status(200).json({ msg: "user delete successfully", data: deleteData });
-//   } catch (err) {
-//     console.log(err);
-//     res.send({ msg: "not delete data", err });
-//   }
-// };
+const deleteUser = async (req, res) => {
+  try {
+    const data = { isDelete: true };
+    const { email } = req.body;
+    const deleteData = await user.update(data, {
+      where: {
+        email,
+      },
+    });
+    res.status(200).json({ msg: "user delete successfully", data: deleteData });
+  } catch (err) {
+    console.log(err);
+    res.send({ msg: "not delete data", err });
+  }
+};
 
 module.exports = {
   RegisterUser,
   LoginUser,
   validateOtp,
   updateUser,
-  //deleteUser
+deleteUser
 };
