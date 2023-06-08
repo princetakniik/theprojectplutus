@@ -31,7 +31,7 @@ router.use((req, res, next) => {
   app.use('/', router)
 const port =config.PORT||5000;
 app.get('/',(req,res)=>{
-  res.send('Prince kumar')
+  res.send('Plutus')
 })
 require('./src/api/constant/status')
 require('./Router')(app)
